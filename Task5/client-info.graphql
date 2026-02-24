@@ -1,0 +1,39 @@
+schema {
+  query: Query
+}
+
+type Query {
+  # Equivalent to GET /clients/{id}
+  client(id: ID!): Client
+
+  # Equivalent to GET /clients/{id}/documents
+  clientDocuments(id: ID!): [Document!]!
+
+  # Equivalent to GET /clients/{id}/relatives
+  clientRelatives(id: ID!): [Relative!]!
+}
+
+type Client {
+  id: ID!
+  name: String
+  age: Int
+
+  # Optional nested fields for flexible one-shot requests
+  documents: [Document!]!
+  relatives: [Relative!]!
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
